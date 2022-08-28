@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class LinkedList
 {
    Node head;
@@ -50,36 +52,64 @@ public class LinkedList
       }
    }
    
-   public void printData()
+   public void printData(int prediction)
    {
-      
       int count = 0;
+      
+      if(head == null && prediction == count)
+      {
+         System.out.println("Empty Set");
+         System.out.println("Perfect Score ::-) ");
+         return;
+      }
       
       if(head == null)
       {
-         System.out.println("You Won The Game :-)");
-         return;
+         System.out.println("Empty Set");
+         System.out.println("GAME OVER!!, YOU LOST !!!");
       }
       
       Node current = head;
       while(current != null)
       {
          count++;
-         System.out.println("Node [" + count + "] : " + current.data);
+         if(current.next == null && prediction == count)
+         {
+            System.out.println("Prediction [" + prediction + "] , Guesses [" + count + "]");
+            System.out.println("Perfect Score ::-) ");
+         }
+         if(current.next == null)
+         {
+            System.out.println("Prediction [" + prediction + "] , Guesses [" + count + "]");
+             System.out.println("GAME OVER!!, YOU LOST !!!");
+         }
          current = current.next;
       }
    }
+
    
    public static void main(String[] args)
    {
-      LinkedList list = new LinkedList();
-      int random_number = (int)(Math.random() * 30);
-      while(random_number != 1)
-      {
-         list.append(random_number);
-         random_number = (int)(Math.random() * 30);
-      }
-      list.printData();
       
+      Scanner scan = new Scanner(System.in);
+      
+      while(true)
+      {
+         LinkedList list = new LinkedList();
+         int random_number = (int)(Math.random() * 30);
+         while(random_number != 1)
+         {
+            list.append(random_number);
+            random_number = (int)(Math.random() * 30);
+         }
+         list.printData(5);
+         
+         System.out.println();
+         System.out.println("Do you want to go again? (y/n): ");
+         System.out.println();
+         if(!scan.next().equalsIgnoreCase("y"))
+            break;
+      }
    }
+
 }
