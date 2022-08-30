@@ -12,6 +12,7 @@ public class Stack<E>
       if(head == null)
       {
          head = new Node<E>(data);
+         return;
       }
       
       Node<E> newHead = new Node<E>(data);
